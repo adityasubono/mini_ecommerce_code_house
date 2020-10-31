@@ -5,3 +5,7 @@ sayur-sayuran, buah-buahan, ikan, daging, dan kacang-kacangan yang membantuk unt
 memenuhi kebutuhan pangan anda.
 
 
+<p align="center">
+  <img src="public/assets/screenshoot/1.png" width="350" title="hover text">
+  <img src="assets/screenshoot/1.png" width="350" alt="accessibility text">
+</p>

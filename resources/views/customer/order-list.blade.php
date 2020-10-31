@@ -20,7 +20,7 @@
                     <tbody>
                     @forelse($order as $list)
                         <tr class="text-center">
-                            <td class="image-prod">{{$list->date}}</td>
+                            <td class="image-prod">{{$list->date_order}}</td>
                             <td class="product-name">{{$list->invoice}}</td>
                             <td class="price">{{$list->subtotal}}</td>
                             <td class="quantity">{{$list->payment_method}}</td>

@@ -3,7 +3,6 @@
 @section('title', 'Category')
 
 @section('content-wrapper')
-    {!! Toastr::message() !!}
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">

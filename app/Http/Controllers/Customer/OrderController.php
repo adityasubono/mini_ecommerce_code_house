@@ -115,7 +115,7 @@ class OrderController extends Controller
         $order->customer_email = $request->email;
         $order->subtotal = $request->subtotal;
         $order->payment_method = $request->payment_method;
-        $order->date = Carbon::now();
+        $order->date_order = Carbon::now();
         $order->save();
         foreach ($cart as $data_cart) {
             $order_detail = new OrderDetail();

@@ -25,9 +25,7 @@
                                     data-live-search="true"
                                     title="Category Product">
                                 <option selected> -- Select to Category Product --</option>
-                                @foreach($category as $list)
-                                <option value="{{$list->id}}">{{$list->name}}</option>
-                                @endforeach
+
                             </select>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="icon icon-search mr-2"></i>Find</button>

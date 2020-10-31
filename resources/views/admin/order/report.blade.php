@@ -36,12 +36,13 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                        @foreach($report as $data)
                         <tr>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$data->date_order}}</td>
+                            <td>{{$data->total}}</td>
                         </tr>
+                        @endforeach
 
                         <!-- Modal -->
 

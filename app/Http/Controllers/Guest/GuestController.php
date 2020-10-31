@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Whislist;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -42,8 +43,6 @@ class GuestController extends Controller
         }
 
         $category = Category::all();
-
-
         return view('index', compact('product','category', 'page_name', 'session_id','qty','qty_whislist'));
     }
 
@@ -243,6 +242,19 @@ class GuestController extends Controller
         } catch (\Exception $e) {
             Toastr::error('Product failed to add cart', 'Error');
             return redirect('/cart/'.$session_id);
+        }
+    }
+
+    public function postReset(Request $request){
+
+        $data = User::where('email', $request->email)->first();
+
+        if($data){
+            Toastr::success('Telah Dikirim Ke Email'. $request->email , 'Success');
+            return redirect('/reset-password');
+        }else{
+            Toastr::error('Email '. $request->email .' tidak terdaftar', 'Error');
+            return redirect('/reset-password');
         }
     }
 }

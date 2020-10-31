@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->integer('subtotal')->default(0);
             $table->string('payment_method');
             $table->string('date_order');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

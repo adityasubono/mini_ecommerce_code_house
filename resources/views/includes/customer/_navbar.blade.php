@@ -97,7 +97,7 @@
                     </li>
 
                     <li class="nav-item cta cta-colored">
-                        <a href="/cart/{{ Auth::user()->remember_token }}" class="nav-link">
+                        <a href="/cart/{{ Auth::user()->remember_token ?? $session_id}}" class="nav-link">
                             @if($qty ?? '' > 0)
                                 <span class="icon-shopping_cart"></span>[<b>{{$qty ?? ''}}</b>]
                             @else

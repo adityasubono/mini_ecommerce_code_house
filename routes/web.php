@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Seller\OrdersController;
-
+use App\Http\Controllers\Customer\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +28,7 @@ Route::get('/cart/{session_id}', [GuestController::class, 'listCart'])->name('li
 Route::get('/cart/delete/{id}/{session_id}', [GuestController::class, 'destroy'])->name('list-cart-delete');
 Route::post('/cart-update', [GuestController::class, 'update'])->name('front.update_cart');
 Route::get('/reset-password', [GuestController::class, 'resetPassword'])->name('reset-password');
+Route::post('/post-password', [GuestController::class, 'postReset'])->name('post-reset');
 
 
 Auth::routes();

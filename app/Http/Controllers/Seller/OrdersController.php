@@ -73,9 +73,8 @@ class OrdersController extends Controller
     {
         //
         $page_name = "Monthly Report";
-//        $report = DB::select("select month(date_order) as bulan, sum(subtotal) from orders group by customer_id")->get();
-
-        return view('admin.order.report', compact('page_name'));
+        $report = DB::select("SELECT MONTH(date_order) as date_order, sum(subtotal) as total FROM `orders` WHERE `status`='Terima Transaksi' GROUP BY MONTH(date_order) ");
+        return view('admin.order.report', compact('page_name','report'));
     }
 
     /**

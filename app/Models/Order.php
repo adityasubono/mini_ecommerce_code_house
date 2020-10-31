@@ -19,6 +19,6 @@ class Order extends Model
         'status',
         'payment_method',
         'subtotal',
-        'date'
+        'date_order'
     ];
 }
