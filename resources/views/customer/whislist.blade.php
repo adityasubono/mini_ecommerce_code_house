@@ -23,10 +23,10 @@
                         @forelse($list_whislist as $list)
                             <tr class="text-center">
                                 <td class="product-remove">
-                                    <a href="/customer/delete-whislist/{{$list->id}}/{{$session_id}}">
+                                    <a href="/customer/delete-whislist/{{$list->id}}/{{Auth::user()->remember_token}}">
                                         <span class="ion-ios-trash mr-3 mb-3"></span>Delete
                                     </a><br>
-                                    <a href="/customer/add-cart/{{$list->id}}/{{$session_id}}">
+                                    <a href="/customer/add-cart/{{$list->id}}/{{Auth::user()->remember_token}}">
                                         <span class="ion-ios-cart mr-3 mb-3"></span>Add Cart
                                     </a><br>
                                 </td>

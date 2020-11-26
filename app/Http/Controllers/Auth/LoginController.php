@@ -56,13 +56,17 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('email' => $inputVal['email'], 'password' => $inputVal['password']))){
             if (auth()->user()->rule == 1) {
-                $user = User::find(auth()->user()->id)->first();
+                $user = User::find(auth()->user()->id);
+                $user->remember_token = $inputVal['remember_token'];
+                $user->save();
+                return redirect()->route('customer');
+
+            }elseif (auth()->user()->rule == 2){
+
+                $user = User::find(auth()->user()->id);
                 $user->remember_token = $inputVal['remember_token'];
                 $user->save();
 
-
-                return redirect()->route('customer');
-            }elseif (auth()->user()->rule == 2){
                 return redirect()->route('seller');
             }
         }else{

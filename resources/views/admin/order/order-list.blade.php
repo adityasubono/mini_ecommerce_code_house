@@ -52,7 +52,12 @@
                                            data-target="#staticBackdrop{{$data->id}}">{{$data->invoice}}</a></td>
                                     <td>{{$data->subtotal}}</td>
                                     <td>{{$data->payment_method}}</td>
-                                    <td>{{$data->status}}</td>
+                                    <td>@if($data->status == 1)
+                                            <b class="text-danger">{{ __('Belum Diterima') }}</b>
+                                        @elseif($data->status == 2)
+                                            <b class="text-success">{{ __('Sudah Diterima') }}</b>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
@@ -86,8 +91,9 @@
                                                     <div class="form-group">
                                                         <label for="status">Status Order</label>
                                                         <select class="form-control" id="status" name="status">
-                                                            <option value="Belum Terima Transaksi">Belum Terima Transaksi</option>
-                                                            <option value="Terima Transaksi">Terima Transaksi</option>
+                                                            <option selected>-- Choosse Status Order --</option>
+                                                            <option value="1">Belum Terima Transaksi</option>
+                                                            <option value="2">Terima Transaksi</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -102,10 +108,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                             @endforeach
                             </tbody>
                             <tfoot>

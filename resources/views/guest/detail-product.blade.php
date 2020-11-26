@@ -99,9 +99,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-100">{{$session_id}}</div>
+                            <div class="w-100"></div>
                             <div class="col-md-12">
-                                <input type="hidden" name="session_id" value="{{$session_id}}">
+                                <input type="hidden" name="remember_token" value="{{$session_id}}">
                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                 <input type="hidden" name="category_id" value="{{$product->category_id}}">
                                 <input type="hidden" name="slug" value="{{$product->slug}}">

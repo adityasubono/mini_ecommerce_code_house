@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\GuestController;
 use App\Http\Controllers\Customer\CustomerController;
-use App\Http\Controllers\Seller\OrdersController;
+use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Customer\OrderController;
 /*
 |--------------------------------------------------------------------------
@@ -49,10 +49,10 @@ Route::middleware(['auth', 'Seller'])->group(function () {
     Route::get('/seller/product-delete/{id}', [ProductController::class, 'destroy'])->name('product-delete');
 
 
-    Route::get('/seller/order', [OrdersController::class, 'index'])->name('order-index');
-    Route::post('/seller/update-status', [OrdersController::class, 'updateStatus'])->name('update-status');
-    Route::get('/seller/invoice-order', [OrdersController::class, 'invoiceOrder'])->name('invoice-order');
-    Route::get('/seller/report', [OrdersController::class, 'report'])->name('invoice-report');
+    Route::get('/seller/order', [SellerController::class, 'index'])->name('order-index');
+    Route::post('/seller/update-status', [SellerController::class, 'updateStatus'])->name('update-status');
+    Route::get('/seller/invoice-order', [SellerController::class, 'invoiceOrder'])->name('invoice-order');
+    Route::get('/seller/report', [SellerController::class, 'report'])->name('invoice-report');
 
 
 });

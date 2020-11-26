@@ -18,14 +18,15 @@
                                    placeholder="Find Your Favorite Product Here..."
                                    aria-label="Recipient's username"
                                    aria-describedby="button-addon2"
-                                   name="find">
-                            <select id="category"
-                                    name="category"
+                                   name="name">
+                            <select id="category_id"
+                                    name="category_id"
                                     class="form-control"
-                                    data-live-search="true"
                                     title="Category Product">
                                 <option selected> -- Select to Category Product --</option>
-
+                                @foreach($category as $list_category)
+                                <option value="{{$list_category->id}}">{{$list_category->name}}</option>
+                                @endforeach
                             </select>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="icon icon-search mr-2"></i>Find</button>

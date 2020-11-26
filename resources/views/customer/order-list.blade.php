@@ -22,7 +22,7 @@
                         <tr class="text-center">
                             <td class="image-prod">{{$list->date_order}}</td>
                             <td class="product-name">{{$list->invoice}}</td>
-                            <td class="price">{{$list->subtotal}}</td>
+                            <td class="price">Rp. {{number_format($list->subtotal,2)}}</td>
                             <td class="quantity">{{$list->payment_method}}</td>
                             <td class="total">{{$list->status}}</td>
                         </tr>

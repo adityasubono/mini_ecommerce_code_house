@@ -9,7 +9,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class OrdersController extends Controller
+class SellerController extends Controller
 {
     public function __construct()
     {
@@ -73,7 +73,7 @@ class OrdersController extends Controller
     {
         //
         $page_name = "Monthly Report";
-        $report = DB::select("SELECT MONTH(date_order) as date_order, sum(subtotal) as total FROM `orders` WHERE `status`='Terima Transaksi' GROUP BY MONTH(date_order) ");
+        $report = DB::select("SELECT MONTH(date_order) as date_order, sum(subtotal) as total FROM `orders` WHERE `status`='2' GROUP BY MONTH(date_order) ");
         return view('admin.order.report', compact('page_name','report'));
     }
 

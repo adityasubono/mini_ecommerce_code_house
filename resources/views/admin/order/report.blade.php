@@ -38,14 +38,13 @@
                     <tbody>
                         @foreach($report as $data)
                         <tr>
-                            <td></td>
+                            <td>{{$loop->iteration}}</td>
                             <td>{{$data->date_order}}</td>
-                            <td>{{$data->total}}</td>
+                            <td>Rp.{{ number_format($data->total,2)}}</td>
                         </tr>
                         @endforeach
 
                         <!-- Modal -->
-
 
                     </tbody>
                     <tfoot>

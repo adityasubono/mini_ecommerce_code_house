@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Whislist;
@@ -56,11 +57,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        if (auth()->user()->remember_token) {
-            $session_id = auth()->user()->remember_token;
-        } else {
-            $session_id = session()->getId();
-        }
+        $session_id = auth()->user()->remember_token;
         $page_name = "home_page";
         $product = Product::all();
         $cart = Cart::where('session_id', $session_id)->get();
@@ -70,9 +67,9 @@ class CustomerController extends Controller
             $qty += $list->qty;
         }
 
+        $category = Category::all();
 
-
-        return view('index', compact('product', 'page_name', 'session_id', 'qty'));
+        return view('index', compact('product', 'page_name', 'session_id', 'qty','category'));
     }
 
     public function addWhislits($id, $user_id)

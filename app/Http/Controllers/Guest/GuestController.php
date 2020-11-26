@@ -11,22 +11,16 @@ use App\Models\Whislist;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
-        if (auth()->user()->remember_token ?? ''){
-            $session_id = auth()->user()->remember_token;
-        }else {
-            $session_id = session()->getId();
-        }
-//        dd($session_id);
+
+        $session_id = auth()->user()->remember_token ??  session()->getId();
         $page_name = "home_page";
         $product = Product::all();
         $cart = Cart::where('session_id', $session_id)->get();
@@ -53,11 +47,7 @@ class GuestController extends Controller
      */
     public function find(Request $request)
     {
-        if (auth()->user()->remember_token ?? ''){
-            $session_id = auth()->user()->remember_token;
-        }else {
-            $session_id = session()->getId();
-        }
+        $session_id = auth()->user()->remember_token ??  session()->getId();
 
         $page_name = "home_page";
         $cart = Cart::where('session_id', $session_id)->get();
@@ -73,9 +63,19 @@ class GuestController extends Controller
             $qty_whislist += $whislist->qty;
         }
 
-        $product = Product::where('name', 'like', '%' .$request->find. '%')->get();
+//        dd($request->category_id);
 
-        return view('index', compact('product', 'page_name', 'session_id','qty','qty_whislist','product'));
+        $name = $request->name;
+        $category_id = $request->category_id;
+
+        $product = DB::table('product')
+            ->select('*')
+            ->where(function($query) use ($name) {
+                $query->where('name', 'like', '%'.$name. '%');
+            })
+            ->get();
+        $category = Category::all();
+        return view('index', compact('product', 'page_name', 'session_id','qty','qty_whislist','product','category'));
     }
 
     /**
@@ -87,12 +87,7 @@ class GuestController extends Controller
     public function store(Request $request)
     {
         try {
-            if (auth()->user()->remember_token ?? ''){
-                $session_id = auth()->user()->remember_token;
-            }else {
-                $session_id = session()->getId();
-            }
-
+            $session_id = $request->remember_token;
             $update = Cart::where('product_id', $request->product_id)
                 ->where('session_id',$request->session_id)->first();
 //            dd($update);
@@ -105,7 +100,7 @@ class GuestController extends Controller
                 $update->qty += $request->qty;
                 $update->price = $request->price;
                 $update->save();
-                return redirect('/cart/' . $request->session_id);
+                return redirect('/cart/' . $session_id);
             } else {
                 $data = new Cart();
                 $data->session_id = $session_id;
@@ -116,7 +111,7 @@ class GuestController extends Controller
                 $data->qty = $request->qty;
                 $data->price = $request->price;
                 $data->save();
-                return redirect('/cart/' . $request->session_id);
+                return redirect('/cart/' . $session_id);
             }
         } catch (\Exception $e) {
             Toastr::error('Product failed to add cart', 'Error');
@@ -133,12 +128,7 @@ class GuestController extends Controller
      */
     public function show($slug)
     {
-        if (auth()->user()->remember_token ?? ''){
-            $session_id = auth()->user()->remember_token;
-        }else {
-            $session_id = session()->getId();
-        }
-
+        $session_id = auth()->user()->remember_token ??  session()->getId();
         $cart = Cart::where('session_id', $session_id)->get();
         $qty = 0;
 

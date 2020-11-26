@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a href="/" class="nav-link">Selamat Datang Di Vegefoods Kami Siap Melayani Anda</a></li>
+                        <a href="/" class="nav-link">Selamat Datang Di Vegefoods Kami Siap Melayani Anda  <span class="text">{{$session_id}}</span></a></li>
                     <li class="nav-item active">
                         <a href="{{ route('login') }}"
                            class="nav-link"
@@ -72,13 +72,13 @@
                            aria-haspopup="true"
                            aria-expanded="false"><b>{{ Auth::user()->name }}</b></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/customer/account/{{ Auth::user()->id }}/{{$session_id ?? ''}}">
+                            <a class="dropdown-item" href="/customer/account/{{ Auth::user()->id }}/{{ Auth::user()->id }}">
                                 <span class="icon-user mr-3"></span>My Account</a>
 
-                            <a class="dropdown-item" href="/customer/order-list/{{ Auth::user()->id }}/{{$session_id ?? ''}}">
+                            <a class="dropdown-item" href="/customer/order-list/{{ Auth::user()->id }}/{{ Auth::user()->id }}">
                                 <span class="icon-dashboard2 mr-3"></span>My Order</a>
 
-                            <a class="dropdown-item" href="/customer/list-whislist/{{ Auth::user()->id }}/{{$session_id ?? ''}}">
+                            <a class="dropdown-item" href="/customer/list-whislist/{{ Auth::user()->id }}/{{ Auth::user()->id }}">
                                 <span class="icon-list mr-3"></span>Wishlist
                                 @if($qty_whislist ?? '' >0 )
                                     <span class="badge badge-info ml-5">{{$qty_whislist}}</span>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="remember_token" value="{{$session_id ?? ''}}">
+                    <input type="text" name="remember_token" value="{{$session_id ?? ''}}">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
